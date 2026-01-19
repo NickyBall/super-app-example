@@ -9,21 +9,21 @@ build/
 *.js.map
 
 # Android
-android/.gradle/
-android/.idea/
-android/local.properties
-android/build/
-android/app/build/
-android/captures/
+android/**/.gradle/
+android/**/.idea/
+android/**/local.properties
+android/**/build/
+android/**/captures/
 *.apk
 *.aab
 
 # iOS
 ios/Pods/
-ios/*.xcworkspace/
-ios/*.xcodeproj/xcuserdata/
-ios/*.xcodeproj/project.xcworkspace/
-ios/build/
+ios/**/*.xcworkspace/
+ios/**/*.xcodeproj/xcuserdata/
+ios/**/*.xcodeproj/project.xcworkspace/
+ios/**/build/
+ios/**/DerivedData/
 *.ipa
 *.dSYM.zip
 
