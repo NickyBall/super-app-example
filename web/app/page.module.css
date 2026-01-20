@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  z-index: 10;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.navigation {
+  display: flex;
+  gap: 12px;
+}
+
+.navButton {
+  flex: 1;
+  padding: 12px 24px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navButton:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.navButton.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.content {
+  flex: 1;
+  overflow: hidden;
+}

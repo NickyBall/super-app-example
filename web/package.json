@@ -1,0 +1,24 @@
+{
+  "name": "web-super-app",
+  "version": "1.0.0",
+  "description": "Web Super App - Host for Mini Apps",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.1.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^8",
+    "eslint-config-next": "15.1.4",
+    "typescript": "^5"
+  }
+}

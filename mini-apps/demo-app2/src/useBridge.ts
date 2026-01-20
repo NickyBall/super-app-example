@@ -40,7 +40,11 @@ export const useBridge = () => {
     else if (window.webkit?.messageHandlers?.nativeApp) {
       window.webkit.messageHandlers.nativeApp.postMessage(message)
     }
-    // Fallback for web development
+    // Web bridge (iframe postMessage)
+    else if (window.parent !== window) {
+      window.parent.postMessage(message, '*')
+    }
+    // Fallback for standalone web development
     else {
       console.log('[Bridge] Message to native:', message)
     }
@@ -79,7 +83,7 @@ export const useBridge = () => {
    * Setup listener for messages from native
    */
   useEffect(() => {
-    // Global handler for receiving messages from native
+    // Global handler for receiving messages from native (Android/iOS)
     window.receiveFromNative = (message: BridgeMessage) => {
       console.log('[Bridge] Message from native:', message)
 
@@ -92,11 +96,33 @@ export const useBridge = () => {
       }
     }
 
+    // Web bridge - listen for postMessage from iframe parent
+    const handlePostMessage = (event: MessageEvent) => {
+      // Security: verify origin if needed
+      // if (event.origin !== 'http://localhost:3000') return
+
+      const message = event.data as BridgeMessage
+      if (message && message.type) {
+        console.log('[Bridge] Message from web host:', message)
+
+        switch (message.type) {
+          case 'userInfo':
+            setUserInfo(message.data as UserInfo)
+            break
+          default:
+            console.log('[Bridge] Unknown message type:', message.type)
+        }
+      }
+    }
+
+    window.addEventListener('message', handlePostMessage)
+
     setIsReady(true)
     log('Mini app initialized')
 
     return () => {
       delete window.receiveFromNative
+      window.removeEventListener('message', handlePostMessage)
     }
   }, [log])
 
